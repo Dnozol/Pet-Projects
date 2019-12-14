@@ -1,0 +1,31 @@
+// variables
+$optionsBG: lightgrey;
+
+$lg: 1280px;
+$md: 900px;
+$sm: 600px;
+
+// styles for body
+h1 {
+    text-align: center;
+}
+// styles for game_container
+.game_container {
+    background-image: url('./images/background.png');
+}
+// styles for main pokemon
+
+// styles for options
+
+
+@media only screen and (min-width: $lg) {
+
+}
+
+@media only screen and (min-width: $md) {
+    
+}
+
+@media only screen and (min-width: $sm) {
+    
+}
