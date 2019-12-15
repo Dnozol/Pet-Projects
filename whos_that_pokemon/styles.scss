@@ -1,6 +1,10 @@
 // variables
 $optionsBG: lightgrey;
 
+$gameHeightLg: 900px;
+$gameHeightMd: 750px;
+$gameHeightSm: 550px; 
+
 $lg: 1280px;
 $md: 900px;
 $sm: 600px;
@@ -11,7 +15,14 @@ h1 {
 }
 // styles for game_container
 .game_container {
-    background-image: url('./images/background.png');
+    height: 80vh;
+    width: 80vw;
+    border: 1px solid;
+    overflow:hidden;
+    img{
+        height: 100%;
+        width: auto;
+    }
 }
 // styles for main pokemon
 

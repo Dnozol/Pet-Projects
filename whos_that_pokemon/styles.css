@@ -3,7 +3,14 @@ h1 {
 }
 
 .game_container {
-  background-image: url("./images/background.png");
+  height: 80vh;
+  width: 80vw;
+  border: 1px solid;
+  overflow: hidden;
+}
+.game_container img {
+  height: 100%;
+  width: auto;
 }
 
 /*# sourceMappingURL=styles.css.map */
