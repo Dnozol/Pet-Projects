@@ -9,25 +9,94 @@ $lg: 1280px;
 $md: 900px;
 $sm: 600px;
 
+$num-columns : 8;
+$one-column : 100% / $num_columns;
+
+// mixins
+@mixin col($span-num) {
+    flex: 0 0 $one-column * $span-num;
+}
+    
+@mixin offset($offset-num) {
+    margin-left: $one-column * $offset-num;
+}
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
 // styles for body
 h1 {
     text-align: center;
 }
+
 // styles for game_container
 .game_container {
-    height: 80vh;
-    width: 80vw;
+    height: 85vh;
+    width: 70vw;
+    margin: 0 auto;
+    padding: 0;
     border: 1px solid;
-    overflow:hidden;
-    img{
-        height: 100%;
-        width: auto;
+    background-color: red;
+}
+
+.row {
+    display: flex;
+    
+}
+.pokemon_name {
+    text-align: center;
+    background-color: green;
+    margin-top: 15%;
+    padding-top: 8%;
+    height: 200px;
+    font-size: 2em;
+}
+.img_container {
+    position: relative;
+    img {
+        height: auto;
+        width: 100%;
+    }
+    .silhouette {
+        width: 200px;
+        height: 200px;
+        z-index: 1;
+        position: absolute;
+        top: 30%;
+        left: 35%;
+        img{
+            filter: brightness(0%);
+        }
     }
 }
+
+.choice {
+    padding: 20px;
+    background-color: gray;
+    border: 1px solid green;
+    border-radius: 5px;
+}
+
 // styles for main pokemon
 
 // styles for options
 
+//make column classes 
+@for $index from 1 to ($num-columns + 1) {
+    .col-#{$index} {
+        @include col($index);
+    }
+}
+
+[class*="col-"] {
+    float: left;
+    border: 1px solid red;
+}
 
 @media only screen and (min-width: $lg) {
 

@@ -11,11 +11,19 @@
 <body>
     <h1>Who's That Pokemon</h1>
     <div class="game_container">
-        <img src="./images/background.png" alt="pkmn background">
-        <span class="choice" id="option1"></span>
-        <span class="choice" id="option2"></span>
-        <span class="choice" id="option3"></span>
-        <span class="choice" id="option4"></span>
+        <div class="row">
+            <div class="img_container col-5" id="img_container">
+                <div class="silhouette" id="silhouette">img here</div>
+                <img src="./images/background.png" alt="pkmn background">
+            </div>
+            <div class="pokemon_name col-3" id="pokemon_name">pokemon_name</div>
+        </div>
+        <div class="row">
+            <span class="choice col-2" id="option1">1</span>
+            <span class="choice col-2" id="option2">2</span>
+            <span class="choice col-2" id="option3">3</span>
+            <span class="choice col-2" id="option4">4</span>
+        </div>
     </div>
 </body>
 </html>
