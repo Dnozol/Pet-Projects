@@ -41,17 +41,49 @@ async function startGame(gen) {
     }
     fillLayout(options);
 }
-
+function shuffle(o) {
+    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
 function fillLayout(options) {
-    geid("pokemon_name").innerHTML = options[0].name;
-    geid("silhouette").innerHTML = `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${options[0].id}.png" alt="${options[0].name}">`
-    geid("option1").innerHTML = options[0].name;
-    geid("option2").innerHTML = options[1].name;
-    geid("option3").innerHTML = options[2].name;
-    geid("option4").innerHTML = options[3].name;
+    var indeces = [0, 1, 2, 3];
+    var randomized = shuffle(indeces);
+    
+    geid("pokemon_name").setAttribute('PokemonName', options[0].name);
+    geid("silhouette").innerHTML = `<img id="ansImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${options[0].id}.png" alt="${options[0].name}">`
+    geid("option1").innerHTML = options[randomized[0]].name;
+    geid("option2").innerHTML = options[randomized[1]].name;
+    geid("option3").innerHTML = options[randomized[2]].name;
+    geid("option4").innerHTML = options[randomized[3]].name;
+    
 }
 
 startGame(1);
+
+let allOptions = document.getElementsByClassName('choice');
+for(let i = 0; i < allOptions.length; i++) {
+    allOptions[i].addEventListener('click', event => {
+        // call function to check selection
+        compareAnswer(event.currentTarget.innerText);
+    });
+}
+
+function compareAnswer(selection) {
+    const answer = geid('pokemon_name').getAttribute("PokemonName");
+
+    if(selection == answer) {
+        geid("ansImg").style.filter = "brightness(100%)";
+        geid("pokemon_name").innerText = answer;
+        setTimeout(function() {
+            alert("Correct!");
+            geid("pokemon_name").innerText = "???";
+            startGame(1);
+        }, 250);
+        
+    } else {
+        alert("Try again...");
+    }
+}
 
 
 function sortList(list) {
