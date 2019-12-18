@@ -46,11 +46,11 @@ function shuffle(o) {
     return o;
 };
 function fillLayout(options) {
-    var indeces = [0, 1, 2, 3];
-    var randomized = shuffle(indeces);
+    var randomized = [0, 1, 2, 3];
+    randomized = shuffle(randomized);
     
     geid("pokemon_name").setAttribute('PokemonName', options[0].name);
-    geid("silhouette").innerHTML = `<img id="ansImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${options[0].id}.png" alt="${options[0].name}">`
+    geid("silhouette").innerHTML = `<img id="ansImg" class="center" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${options[0].id}.png" alt="${options[0].name}">`
     geid("option1").innerHTML = options[randomized[0]].name;
     geid("option2").innerHTML = options[randomized[1]].name;
     geid("option3").innerHTML = options[randomized[2]].name;

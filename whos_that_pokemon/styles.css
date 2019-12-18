@@ -32,21 +32,24 @@ h1 {
 
 .img_container {
   position: relative;
-}
-.img_container img {
-  height: auto;
-  width: 100%;
+  background-image: url("./images/background.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .img_container .silhouette {
-  width: 200px;
-  height: 200px;
   z-index: 1;
-  position: absolute;
-  top: 30%;
-  left: 35%;
 }
 .img_container .silhouette img {
+  margin-top: calc(25% - 50px);
+  height: 200px;
+  width: auto;
   filter: brightness(0%);
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .choice {
@@ -54,6 +57,10 @@ h1 {
   background-color: gray;
   border: 1px solid green;
   border-radius: 5px;
+}
+
+.presentation {
+  height: 90%;
 }
 
 .col-1 {
