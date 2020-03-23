@@ -21,13 +21,11 @@ $one-column : 100% / $num_columns;
     margin-left: $one-column * $offset-num;
 }
 
-
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
-
 
 // styles for body
 h1 {
@@ -46,6 +44,9 @@ h1 {
 
 .row {
     display: flex;    
+}
+input {
+    margin-left: 20px;
 }
 .pokemon_name {
     text-align: center;
@@ -90,7 +91,9 @@ h1 {
     height: 90%;
 }
 
-
+.genSelect {
+    margin-left: 25%;
+}
 
 // styles for main pokemon
 

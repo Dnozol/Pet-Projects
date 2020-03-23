@@ -10,10 +10,20 @@
 </head>
 <body>
     <h1>Who's That Pokemon</h1>
+    <div id="genSelect" class="genSelect">
+        <input type="checkbox" class="gen" name="gen" value="1">Gen 1
+        <input type="checkbox" class="gen" name="gen" value="2">Gen 2
+        <input type="checkbox" class="gen" name="gen" value="3">Gen 3
+        <input type="checkbox" class="gen" name="gen" value="4">Gen 4
+        <input type="checkbox" class="gen" name="gen" value="5">Gen 5
+        <input type="checkbox" class="gen" name="gen" value="6">Gen 6
+        <input type="checkbox" class="gen" name="gen" value="7">Gen 7
+        <button type="button" id="startGame">Start Game</button>
+    </div>
     <div class="game_container">
         <div class="row presentation">
             <div class="img_container col-5" id="img_container">
-                <div class="silhouette" id="silhouette">img here</div>
+                <div class="silhouette" id="silhouette"></div>
                 <!-- <img src="./images/background.png" alt="pkmn background"> -->
             </div>
             <div class="pokemon_name col-3" id="pokemon_name">???</div>

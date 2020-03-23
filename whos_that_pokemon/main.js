@@ -20,27 +20,43 @@ function getJson(url) {
         console.log('getJSON', err);
     });
 }
-// get whole pokedex, for now just gen 1
-async function startGame(gen) {
-    let genToGet = await getJson(`generation/${gen}`);
-    let pokemon = genToGet.pokemon_species;
-    let options = [];
-    pokemon = sortList(pokemon);
 
-    // choose 1 pokemon for the game and answer
-    let ansPokemon = Math.floor(Math.random() * 151);
-    options.push(pokemon[ansPokemon]);
+// start game
+async function startGame(gens) {
+    let allpokemon = [];
+    let numOfPokemon = 0;
+    let options = [];
+
+    for(let i = 0; i < gens.length; i++) {
+        let genToGet = await getJson(`generation/${gens[i]}`);
+        
+        numOfPokemon += genToGet.pokemon_species.length;
+        let oneGen = genToGet.pokemon_species;
+        allpokemon = allpokemon.concat(oneGen);
+    }
+    
+    allpokemon = sortList(allpokemon);
+
+    
+
+    let ansPokemon = Math.floor(Math.random() * numOfPokemon);
+    options.push(allpokemon[ansPokemon]);
     
     // choose 3 pokemon for the other options
     while(options.length < 4) {
-        let pokemonId = Math.floor(Math.random() * 151);
+        let pokemonId = Math.floor(Math.random() * numOfPokemon);
         // make sure we don't add duplicate pokemon
-        if(!(options.some(pokemon => pokemon['id'] == (pokemonId + 1)))){
-            options.push(pokemon[pokemonId]);
-        }   
+        console.log(pokemonId);
+        console.log((options.some(pokemon => pokemon['id'] == (pokemonId + 1))));
+        if(!(options.some(pokemon => pokemon['id'] === (pokemonId + 1)))){
+            options.push(allpokemon[pokemonId]);
+        }
     }
     fillLayout(options);
+   
 }
+
+
 function shuffle(o) {
     for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
@@ -58,8 +74,20 @@ function fillLayout(options) {
     
 }
 
-startGame(1);
 
+const startButton = geid("startGame");
+startButton.addEventListener('click', event => {
+    let checks = document.querySelectorAll(".gen");
+    let gensToCall = [];
+    for(var i = 0; i < checks.length; i++) {
+        if(checks[i].checked) {
+            gensToCall.push(checks[i].value);
+        }
+    }
+    startGame(gensToCall);
+});
+
+// add event listeners to the choices
 let allOptions = document.getElementsByClassName('choice');
 for(let i = 0; i < allOptions.length; i++) {
     allOptions[i].addEventListener('click', event => {
@@ -77,14 +105,14 @@ function compareAnswer(selection) {
         setTimeout(function() {
             alert("Correct!");
             geid("pokemon_name").innerText = "???";
-            startGame(1);
+            // start a new game
+            geid("startGame").click();
         }, 250);
         
     } else {
         alert("Try again...");
     }
 }
-
 
 function sortList(list) {
     let newList = [];
@@ -105,5 +133,3 @@ function sortList(list) {
     // give it back to the game
     return newList;
 }
-
-// check if the user's choice was correct

@@ -21,6 +21,10 @@ h1 {
   display: flex;
 }
 
+input {
+  margin-left: 20px;
+}
+
 .pokemon_name {
   text-align: center;
   background-color: green;
@@ -61,6 +65,10 @@ h1 {
 
 .presentation {
   height: 90%;
+}
+
+.genSelect {
+  margin-left: 25%;
 }
 
 .col-1 {
